@@ -4,11 +4,16 @@ import { setSearchTerm } from '../features/searchSlice'; // Import the action cr
 
 export default function SearchBar() {
     const dispatch = useDispatch(); // Create a dispatch function to send actions to store
-    const searchTerm = useSelector((state) => state.searchTerm); // Select the search state from the Redux store
+    const searchTerm = useSelector((state) => state.search.searchTerm); // Select the search state from the Redux store
+    const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm); // Local state for input value
+
+    const handleChange = (event) => {
+        setLocalSearchTerm(event.target.value); // Update local state on every change
+    }
 
     const handleSubmit= (event) => {
         event.preventDefault(); // Prevents site reload on form submission
-        dispatch(setSearchTerm(event.target.value)); // dispatch the setSearchTerm to redux store
+        dispatch(setSearchTerm(localSearchTerm)); // dispatch the setSearchTerm to redux store
     }
 
     return (
@@ -16,7 +21,8 @@ export default function SearchBar() {
             <input
                 type="text" 
                 placeholder="Search" 
-                value={searchTerm} // Use local state for value
+                value={localSearchTerm} // Use local state for value
+                onChange={handleChange}
             />
             <button type="submit">Search</button> {/* Button to trigger submit */}
         </form>

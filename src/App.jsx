@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
 import SearchBar from './components/searchBar.jsx';
 
-// AT THE END ADD A CACHE AND THROTTLE TO THE SEARCH TO AVOID TOO MANY REQUESTS TO THE API
+// AT THE END ADD A CACHE AND THROTTLE TO THE SEARCH TO AVOID TOO MANY REQUESTS TO THE API also add typing updates to the search bar
 
 
 export default function App() {
@@ -25,11 +25,12 @@ export default function App() {
 
       try {
         let url = '';
-        if (searchTerm.trim() === '') {
+        if (!searchTerm || searchTerm.trim() === '') {
           url = 'https://www.reddit.com/r/popular.json';
         }
         else {
           url = `https://www.reddit.com/search.json?q=${searchTerm}`;
+          console.log(url);
         }
 
         const response = await fetch(url);
@@ -67,10 +68,11 @@ export default function App() {
   return (
     <div>
       <SearchBar />
-      <h1>Posts</h1>
+      <h1>Current Search Term: {searchTerm}</h1>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
+            <img src={post.image} alt="" />
             <h2>{post.title}</h2>
             <p>{post.content}</p>
           </li>

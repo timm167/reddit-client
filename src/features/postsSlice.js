@@ -13,7 +13,7 @@ const postsSlice = createSlice({
     initialState, 
     reducers: {
         setPosts: (state, action) => {
-            return action.payload;  // Sets the posts array to the payload passed in the action
+            return action.payload;  // Set the posts array to the payload passed in the action
             },
         addPost: (state, action) => {
             state.push(action.payload);  // state.push mutably adds a new post to the posts array thanks to toolkit

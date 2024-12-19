@@ -68,7 +68,7 @@ export default function App() {
 
   return (
     <div>
-      <SearchBar onSearch={handleSearch}/>
+      <SearchBar />
       <h1>Posts</h1>
       <ul>
         {posts.map((post) => (

@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
 
 export default function App() {
-  const posts = useSelector((state) => state.posts); // Select the posts array from the Redux store
-  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts.posts); // Select the posts array from the Redux store
+  const loading = useSelector((state) => state.posts.loading); // Select the loading state from the Redux store
+  const hasError = useSelector((state) => state.posts.hasError); // Select the hasError state from the Redux store
+
+  const dispatch = useDispatch(); // Create a dispatch function to send actions to store
 
   const newPosts = [
     {id:1, title: 'Post 1', content: 'This is Post 1 content'},
@@ -14,6 +17,14 @@ export default function App() {
   useEffect(() => {
     dispatch(setPosts(newPosts))
   }, [dispatch]); // Dispatch the setPost action creator 
+
+  if (loading) {
+    return <p>Wait one sec...</p> // Display a loading message if the data is loading
+  }
+
+  if (hasError) {
+    return <p>This broken</p> // Display an error message if there is an error
+  }
 
   return (
     <div>

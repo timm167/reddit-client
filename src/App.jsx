@@ -15,8 +15,34 @@ export default function App() {
   ];
 
   useEffect(() => {
-    dispatch(setPosts(newPosts))
-  }, [dispatch]); // Dispatch the setPost action creator 
+    const fetchPosts = async () => {
+      dispatch(setLoading(true)); // setLoading to true in store
+
+      try {
+        const response = await fetch('https://www.reddit.com/r/popular.json');
+        const data = await response.json();
+
+        const redditPosts = data.data.children.map((post) => ({ // .map to create a new array of objects containing the relevant data
+          id: post.data.id,
+          title: post.data.title,
+          content: post.data.selftext
+        }));
+
+        dispatch(setPosts(redditPosts)); // Dispatched the posts array just created to store
+      }
+      catch (error) {
+        dispatch(setError(true)); // Set hasError to true in store
+        console.error('Error fetching posts', error);
+      }
+      finally {
+        dispatch(setLoading(false)); // Set loading to false in store once fetching is done
+      }
+    };
+    fetchPosts(); // Call the fetchPosts function
+  }, [dispatch]);
+
+
+
 
   if (loading) {
     return <p>Wait one sec...</p> // Display a loading message if the data is loading

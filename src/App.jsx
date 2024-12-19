@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
 import SearchBar from './components/searchBar.jsx';
+import Posts from './components/posts.jsx';
 
 // AT THE END ADD A CACHE AND THROTTLE TO THE SEARCH TO AVOID TOO MANY REQUESTS TO THE API also add typing updates to the search bar
 
@@ -69,15 +70,7 @@ export default function App() {
     <div>
       <SearchBar />
       <h1>Current Search Term: {searchTerm}</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <img src={post.image} alt="" />
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
-          </li>
-        ))}
-        </ul>
+      <Posts/>
     </div>
   )
 } 

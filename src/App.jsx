@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
+import SearchBar from './components/searchBar';
+
 
 export default function App() {
   const posts = useSelector((state) => state.posts.posts); // Select the posts array from the Redux store
@@ -54,6 +56,7 @@ export default function App() {
 
   return (
     <div>
+      <SearchBar onSearch={handleSearch}/>
       <h1>Posts</h1>
       <ul>
         {posts.map((post) => (

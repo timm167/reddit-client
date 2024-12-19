@@ -6,19 +6,19 @@ export default function SearchBar() {
     const dispatch = useDispatch(); // Create a dispatch function to send actions to store
     const searchTerm = useSelector((state) => state.searchTerm); // Select the search state from the Redux store
 
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value); // Updates the searchTerm as the user types
-        dispatch(setSearchTerm(event.target.value)); // pass the search term to the onSearch prop in App.jsx
+    const handleSubmit= (event) => {
+        event.preventDefault(); // Prevents site reload on form submission
+        dispatch(setSearchTerm(event.target.value)); // dispatch the setSearchTerm to redux store
     }
 
     return (
-        <div>
+        <form onSubmit={handleSubmit}> 
             <input
                 type="text" 
-                placeholder="Search" // Placeholder text for the input field
-                value={searchTerm} // Value of the input field is the searchTerm state
-                onChange={handleChange} // Calls the handleChange function to be passed up to App.jsx
+                placeholder="Search" 
+                value={searchTerm} // Use local state for value
             />
-        </div>
+            <button type="submit">Search</button> {/* Button to trigger submit */}
+        </form>
     )
 }

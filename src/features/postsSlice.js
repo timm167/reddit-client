@@ -1,10 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 // Define the initial state to be used in postsSlice
-const initialState = [
-    {id:1, title: 'Post 1', content: 'This is Post 1 content'},
-    {id:2, title: 'Post 2', content: 'This is Post 2 content'}
-]
+const initialState = {
+    posts: [],
+    loading: false,
+    hasError: false,
+}
 
 
 // Create a slice for posts containing the name, initial state, and the reducers
@@ -13,16 +14,19 @@ const postsSlice = createSlice({
     initialState, 
     reducers: {
         setPosts: (state, action) => {
-            return action.payload;  // Set the posts array to the payload passed in the action
+            state.posts = action.payload;  // Set the posts array to the payload passed in the action
             },
-        addPost: (state, action) => {
-            state.push(action.payload);  // state.push mutably adds a new post to the posts array thanks to toolkit
-            },
-    } 
+        setLoading: (state, action) => {
+            state.loading = action.payload;  // Set the loading state to the payload passed in the action
+        },
+        setError: (state, action) => {
+            state.hasError = action.payload;  // Set the hasError state to the payload passed in the action
+        },
+    }
 })
 
 // Export the action creators to be used in the components
-export const { setPosts, addPost } = postsSlice.actions;
+export const { setPosts, setLoading, setError } = postsSlice.actions;
 
 // Export the reducer to be used in the Redux store
 export default postsSlice.reducer;

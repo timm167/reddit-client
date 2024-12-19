@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setPosts, addPost } from './features/postsSlice'; // Import the action creators from the postsSlice
+import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
 
 export default function App() {
   const posts = useSelector((state) => state.posts); // Select the posts array from the Redux store
@@ -13,7 +13,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(setPosts(newPosts))
-  }, [dispatch]); // Dispatch the addPost action creator with the first post
+  }, [dispatch]); // Dispatch the setPost action creator 
 
   return (
     <div>

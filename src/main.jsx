@@ -5,7 +5,7 @@ import store from './store'; // Import Redux store
 import App from './App';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
+  <Provider store={store}> {/* Provider component allows all components to access store*/}
     <App />
   </Provider>
 );

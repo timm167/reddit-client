@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
 import SearchBar from './components/searchBar.jsx';
 
+// AT THE END ADD A CACHE AND THROTTLE TO THE SEARCH TO AVOID TOO MANY REQUESTS TO THE API
+
 
 export default function App() {
   const posts = useSelector((state) => state.posts.posts); // Select the posts array from the Redux store
   const loading = useSelector((state) => state.posts.loading); // Select the loading state from the Redux store
   const hasError = useSelector((state) => state.posts.hasError); // Select the hasError state from the Redux store
-  const searchTerm = useSelector((state) => state.posts.searchTerm); // Select the searchTerm state from the Redux store
+  const searchTerm = useSelector((state) => state.search.searchTerm); // Select the search state from the Redux store
 
   const dispatch = useDispatch(); // Create a dispatch function to send actions to store
 
@@ -51,11 +53,7 @@ export default function App() {
       }
     };
     fetchPosts(); // Call the fetchPosts function
-  }, [dispatch, searchQuery]); // Add dispatch and searchQuery to the dependency array so it updates on load and on search
-
-  const handleSearch = (searchTerm) => {
-    // FIGURE OUT
-  }
+  }, [dispatch, searchTerm]); // Add dispatch and searchQuery to the dependency array so it updates on load and on search
 
 
   if (loading) {

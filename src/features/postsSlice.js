@@ -19,12 +19,38 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm
         id: post.data.id,
         title: post.data.title,
         content: post.data.selftext,
-        image: post.data.thumbnail
+        image: post.data.thumbnail,
+        num_comments: post.data.num_comments,
+        subreddit: post.data.subreddit,
+        comments: [], 
       }));
     }
     catch (error) {
       return rejectWithValue(`Failed to fetch from Reddit API: ${error.message}`); // Return the error with custom message
   }});
+
+export const fetchComments = createAsyncThunk(
+    'posts/fetchComments',
+    async ({ subreddit, postId }, { rejectWithValue }) => {
+      try {
+        const url = `https://www.reddit.com/r/${subreddit}/comments/${postId}.json`;
+        const response = await fetch(url);
+        const data = await response.json();
+  
+        // Parse comments from the API response
+        const comments = data[1].data.children.map((comment) => ({
+          id: comment.data.id,
+          author: comment.data.author,
+          content: comment.data.body,
+        }));
+  
+        return { postId, comments };
+      } catch (error) {
+        return rejectWithValue('Failed to fetch comments');
+      }
+    }
+  );
+  
 
 // Define the initial state to be used in postsSlice
 const initialState = {
@@ -62,6 +88,34 @@ const postsSlice = createSlice({
             state.loading = false; 
             state.hasError = true; 
             state.errorMessage = action.payload; 
+        });
+
+        //Handle the fetchComments async thunk
+
+        // loading state when fetching comments
+        builder.addCase(fetchComments.pending, (state) => {
+            state.loading = true;
+            state.hasError = false;
+            state.errorMessage = '';
+        });
+        
+        // completed state after fetching comments
+        builder.addCase(fetchComments.fulfilled, (state, action) => {
+            state.loading = false;
+            const { postId, comments } = action.payload;
+            // Iterate through the posts to find the post with the matching ID
+            // Assign the correct comments to that post
+            const post = state.posts.find((p) => p.id === postId);
+            if (post) {
+                post.comments = comments;
+            }
+        });
+
+        // error state if fetching comments fails
+        builder.addCase(fetchComments.rejected, (state, action) => {
+            state.loading = false;
+            state.hasError = true;
+            state.errorMessage = action.payload;
         });
     }
 })

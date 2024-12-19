@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { setPosts, setLoading, setError } from './features/postsSlice'; // Import the action creators from the postsSlice
+import { fetchPosts } from './features/postsSlice.js';
 import SearchBar from './components/searchBar.jsx';
 import Posts from './components/posts.jsx';
 
@@ -15,47 +15,9 @@ export default function App() {
 
   const dispatch = useDispatch(); // Create a dispatch function to send actions to store
 
-  const newPosts = [
-    {id:1, title: 'Post 1', content: 'This is Post 1 content'},
-    {id:2, title: 'Post 2', content: 'This is Post 2 content'}
-  ];
-
   useEffect(() => {
-    const fetchPosts = async () => {
-      dispatch(setLoading(true)); // setLoading to true in store
-
-      try {
-        let url = '';
-        if (!searchTerm || searchTerm.trim() === '') {
-          url = 'https://www.reddit.com/r/popular.json';
-        }
-        else {
-          url = `https://www.reddit.com/search.json?q=${searchTerm}`;
-          console.log(url);
-        }
-
-        const response = await fetch(url);
-        const data = await response.json();
-
-        const redditPosts = data.data.children.map((post) => ({ // .map to create a new array of objects containing the relevant data
-          id: post.data.id,
-          title: post.data.title,
-          content: post.data.selftext,
-          image: post.data.thumbnail
-        }));
-
-        dispatch(setPosts(redditPosts)); // Dispatched the posts array just created to store
-      }
-      catch (error) {
-        dispatch(setError(true)); // Set hasError to true in store
-        console.error('Error fetching posts', error);
-      }
-      finally {
-        dispatch(setLoading(false)); // Set loading to false in store once fetching is done
-      }
-    };
-    fetchPosts(); // Call the fetchPosts function
-  }, [dispatch, searchTerm]); // Add dispatch and searchQuery to the dependency array so it updates on load and on search
+    dispatch(fetchPosts(searchTerm)); // Dispatch the fetchPosts thunk with the current searchTerm
+  }, [searchTerm, dispatch]);
 
 
   if (loading) {
@@ -70,7 +32,7 @@ export default function App() {
     <div>
       <SearchBar />
       <h1>Current Search Term: {searchTerm}</h1>
-      <Posts/>
+      <Posts />
     </div>
   )
 } 

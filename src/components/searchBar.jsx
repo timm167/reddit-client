@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchTerm } from '../features/searchSlice'; // Import the action creator from the searchSlice
+import './Components.css';
 
 export default function SearchBar() {
     const dispatch = useDispatch(); // Create a dispatch function to send actions to store

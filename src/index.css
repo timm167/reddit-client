@@ -23,11 +23,11 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  margin: 0px;
 }
 
 h1 {
@@ -74,4 +74,17 @@ ul, ol, li {
 
 body > * {
   list-style: none;
+}
+
+/* Apply Poppins to headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin: 0; /* Optional: Reset margin for consistency */
+}
+
+/* Apply Roboto to body text */
+body, p, li, button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }

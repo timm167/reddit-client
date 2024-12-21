@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../features/postsSlice';
+import './Components.css';
 
 export default function Post({ post }) {
     const [showComments, setShowComments] = useState(false);

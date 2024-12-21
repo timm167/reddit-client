@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from './features/postsSlice.js';
 import SearchBar from './components/searchBar.jsx';
 import Posts from './components/posts.jsx';
+import './App.css';
 
 // AT THE END ADD A CACHE AND THROTTLE TO THE SEARCH TO AVOID TOO MANY REQUESTS TO THE API also add typing updates to the search bar
 
@@ -23,11 +24,17 @@ export default function App() {
   }
 
   return (
-    <div>
-      <SearchBar />
-      {loadingPosts && <p>Loading...</p>} {/* Display a loading message while posts are being fetched */}
-      <h1>Current Search Term: {searchTerm}</h1>
-      <Posts />
+    <div className='app-container'>
+      <div className='nav-bar'>
+       <SearchBar />
+       <h1 className='site-title'>Daily Dose of Reddit</h1>
+       <img src="/Screenshot_2024-12-21_at_20.55.52-removebg-preview.png" alt="Site Logo" className='logo'/>
+      </div>
+      <div className="main-page-container">
+        {searchTerm && <h2>{searchTerm}</h2>}
+        {loadingPosts && <p>Loading...</p>} {/* Display a loading message while posts are being fetched */}
+        <Posts />
+      </div>
     </div>
   )
 }

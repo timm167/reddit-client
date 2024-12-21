@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+li {
+  list-style: none;
 }
 
 .logo {
@@ -39,4 +41,48 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* My Styles */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: left;
+  margin: 0px;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: #646cff;
+}
+
+.site-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: white;
+}
+
+/* Apply Poppins to headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin: 0; /* Optional: Reset margin for consistency */
+}
+
+/* Apply Roboto to body text */
+body, p, li, button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.main-page-container {
+  display: flex;
+  margin: 0px 50px;
+  padding: 0px;
 }

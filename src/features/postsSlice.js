@@ -58,7 +58,8 @@ export const fetchComments = createAsyncThunk(
 // Define the initial state to be used in postsSlice
 const initialState = {
     posts: [],
-    loading: false,
+    loadingPosts: false,
+    loadingComments: false,
     hasError: false,
     errorMessage: ''
 }
@@ -69,45 +70,38 @@ const postsSlice = createSlice({
     name: 'posts', 
     initialState, 
     reducers: {},
-    extraReducers: (builder) =>{
-        // loading state when fetching data
-        // clear errors when fetching data
-        builder.addCase(fetchPosts.pending, (state) => { 
-            state.loading = true; 
-            state.hasError = false; 
-            state.errorMessage = ''; 
-          });
-      
-        // completed state after fetching data
-        // sets the posts state with the fetched data
-        builder.addCase(fetchPosts.fulfilled, (state, action) => {
-            state.loading = false; 
-            state.posts = action.payload; 
-        });
-    
-        // error state if fetching data fails
-        // sets the error message state with the error message from rejectedWithValue
-        builder.addCase(fetchPosts.rejected, (state, action) => {
-            state.loading = false; 
-            state.hasError = true; 
-            state.errorMessage = action.payload; 
-        });
-
-        //Handle the fetchComments async thunk
-
-        // loading state when fetching comments
-        builder.addCase(fetchComments.pending, (state) => {
-            state.loading = true;
+    extraReducers: (builder) => {
+        // loading state when fetching posts
+        builder.addCase(fetchPosts.pending, (state) => {
+            state.loadingPosts = true;
             state.hasError = false;
             state.errorMessage = '';
         });
-        
+
+        // completed state after fetching posts
+        builder.addCase(fetchPosts.fulfilled, (state, action) => {
+            state.loadingPosts = false;
+            state.posts = action.payload;
+        });
+
+        // error state if fetching posts fails
+        builder.addCase(fetchPosts.rejected, (state, action) => {
+            state.loadingPosts = false;
+            state.hasError = true;
+            state.errorMessage = action.payload;
+        });
+
+        // loading state when fetching comments
+        builder.addCase(fetchComments.pending, (state) => {
+            state.loadingComments = true;
+            state.hasError = false;
+            state.errorMessage = '';
+        });
+
         // completed state after fetching comments
         builder.addCase(fetchComments.fulfilled, (state, action) => {
-            state.loading = false;
+            state.loadingComments = false;
             const { postId, comments } = action.payload;
-            // Iterate through the posts to find the post with the matching ID
-            // Assign the correct comments to that post
             const post = state.posts.find((p) => p.id === postId);
             if (post) {
                 post.comments = comments;
@@ -116,7 +110,7 @@ const postsSlice = createSlice({
 
         // error state if fetching comments fails
         builder.addCase(fetchComments.rejected, (state, action) => {
-            state.loading = false;
+            state.loadingComments = false;
             state.hasError = true;
             state.errorMessage = action.payload;
         });

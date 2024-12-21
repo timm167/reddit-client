@@ -6,6 +6,7 @@ export default function Post({ post }) {
     const [showComments, setShowComments] = useState(false);
     const [visibleComments, setVisibleComments] = useState(10); // Initial number of comments to display
     const dispatch = useDispatch();
+    const loadingComments = useSelector((state) => state.posts.loadingComments); // Select the loadingComments state from the Redux store
 
     // Access the comments from Redux for the current post
     const postComments = useSelector((state) => 
@@ -25,6 +26,7 @@ export default function Post({ post }) {
         setVisibleComments((prev) => prev + 10);
     }
 
+    
     return (
         <li>
             <h2>{post.title}</h2>
@@ -34,7 +36,7 @@ export default function Post({ post }) {
                 {showComments ? 'Hide Comments' : `Comments: ${post.num_comments}`}
             </button>
             <p>Subreddit: {post.subreddit}</p>
-
+            {loadingComments && <p>Loading Comments...</p>}
             {showComments && postComments && (
                 <>
                     <ul>

@@ -8,8 +8,7 @@ import Posts from './components/posts.jsx';
 
 
 export default function App() {
-  const posts = useSelector((state) => state.posts.posts); // Select the posts array from the Redux store
-  const loading = useSelector((state) => state.posts.loading); // Select the loading state from the Redux store
+  const loadingPosts = useSelector((state) => state.posts.loadingPosts); // Select the loadingPosts state from the Redux store
   const hasError = useSelector((state) => state.posts.hasError); // Select the hasError state from the Redux store
   const searchTerm = useSelector((state) => state.search.searchTerm); // Select the search state from the Redux store
 
@@ -19,11 +18,16 @@ export default function App() {
     dispatch(fetchPosts(searchTerm)); // Dispatch the fetchPosts thunk with the current searchTerm
   }, [searchTerm, dispatch]);
 
+  if (hasError) {
+    return <p>This broken</p> // Display an error message if there is an error
+  }
+
   return (
     <div>
       <SearchBar />
+      {loadingPosts && <p>Loading...</p>} {/* Display a loading message while posts are being fetched */}
       <h1>Current Search Term: {searchTerm}</h1>
       <Posts />
     </div>
   )
-} 
+}

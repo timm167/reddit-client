@@ -36,7 +36,7 @@ export const fetchComments = createAsyncThunk(
     async ({ subreddit, postId }, { rejectWithValue }) => {
       try {
         console.log(subreddit, postId);
-        const url = `https://www.reddit.com/r/${subreddit}/comments/${postId}.json?limit=30`;
+        const url = `https://www.reddit.com/r/${subreddit}/comments/${postId}.json?limit=100`;
         const response = await fetch(url);
         const data = await response.json();
   

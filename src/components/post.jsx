@@ -4,6 +4,7 @@ import { fetchComments } from '../features/postsSlice';
 
 export default function Post({ post }) {
     const [showComments, setShowComments] = useState(false);
+    const [visibleComments, setVisibleComments] = useState(10); // Initial number of comments to display
     const dispatch = useDispatch();
 
     // Access the comments from Redux for the current post
@@ -19,26 +20,37 @@ export default function Post({ post }) {
         setShowComments(!showComments);
     }
 
+    function handleMoreComments() {
+        // Increment the number of visible comments by 5
+        setVisibleComments((prev) => prev + 10);
+    }
+
     return (
         <li>
             <h2>{post.title}</h2>
             {post.image && <img src={post.image} alt={post.title} />}
             <p>{post.content}</p>
             <button onClick={handleClick}>
-                Comments: {post.num_comments}
+                {showComments ? 'Hide Comments' : `Comments: ${post.num_comments}`}
             </button>
             <p>Subreddit: {post.subreddit}</p>
 
             {showComments && postComments && (
-                <ul>
-                    {postComments.slice(0, 5).map((comment) => (
-                        <li key={comment.id}>
-                            <h3>{comment.author}</h3>
-                            <p>{comment.content}</p>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    <ul>
+                        {postComments.slice(0, visibleComments).map((comment) => (
+                            <li key={comment.id}>
+                                <h3>{comment.author}</h3>
+                                <p>{comment.content}</p>
+                            </li>
+                        ))}
+                    </ul>
+                    {visibleComments < postComments.length && (
+                        <button onClick={handleMoreComments}>More Comments</button>
+                    )}
+                </>
             )}
         </li>
     );
 }
+

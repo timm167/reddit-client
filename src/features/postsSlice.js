@@ -5,10 +5,10 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm
     try {
       let url = '';
       if (!searchTerm || searchTerm.trim() === '') {
-        url = 'https://www.reddit.com/r/popular.json'; // fetch popular posts if no search term
+        url = 'https://www.reddit.com/r/popular.json?limit=10'; // fetch popular posts if no search term
       }
       else {
-        url = `https://www.reddit.com/search.json?q=${searchTerm}`; // search for the search term
+        url = `https://www.reddit.com/search.json?q=${searchTerm}&limit=10`; // search for the search term
       }
 
       // Once received, map the data
@@ -23,17 +23,20 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm
         num_comments: post.data.num_comments,
         subreddit: post.data.subreddit,
         comments: [], 
+        is_private: post.data.is_private
       }));
     }
     catch (error) {
       return rejectWithValue(`Failed to fetch from Reddit API: ${error.message}`); // Return the error with custom message
   }});
 
+// Create an async thunk to fetch comments from the Reddit API
 export const fetchComments = createAsyncThunk(
     'posts/fetchComments',
     async ({ subreddit, postId }, { rejectWithValue }) => {
       try {
-        const url = `https://www.reddit.com/r/${subreddit}/comments/${postId}.json`;
+        console.log(subreddit, postId);
+        const url = `https://www.reddit.com/r/${subreddit}/comments/${postId}.json?limit=30`;
         const response = await fetch(url);
         const data = await response.json();
   

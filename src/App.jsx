@@ -19,15 +19,6 @@ export default function App() {
     dispatch(fetchPosts(searchTerm)); // Dispatch the fetchPosts thunk with the current searchTerm
   }, [searchTerm, dispatch]);
 
-
-  if (loading) {
-    return <p>Wait one sec...</p> // Display a loading message if the data is loading
-  }
-
-  if (hasError) {
-    return <p>This broken</p> // Display an error message if there is an error
-  }
-
   return (
     <div>
       <SearchBar />

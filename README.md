@@ -1,9 +1,9 @@
 # Daily Dose of Reddit
 
-This project is a React application that fetches and displays posts and comments from Reddit using the Reddit API. It allows users to search for posts by subreddit and view comments for each post.
+This project is a React and Redux application that fetches and displays posts and comments from Reddit using the Reddit API. It allows users to search for posts by subreddit and view comments for each post. I plan to add updates.
 
 ## Project Structure
-
+```
 src/
 ┣ assets/
 ┣ components/
@@ -19,7 +19,7 @@ src/
 ┣ index.css
 ┣ main.jsx
 ┗ store.js
-
+```
 ## Features
 
 - Fetch and display popular posts from Reddit.
@@ -28,28 +28,14 @@ src/
 - Load more comments for a post.
 - Navigate to a subreddit by clicking on the subreddit name.
 
-## Installation
+## Tech Stack
 
-1. Clone the repository:
-    ```sh
-    git clone <repository-url>
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd <project-directory>
-    ```
-3. Install the dependencies:
-    ```sh
-    npm install
-    ```
-
-## Usage
-
-1. Start the development server:
-    ```sh
-    npm run dev
-    ```
-2. Open your browser and navigate to `http://localhost:3000`.
+- React: For components
+- Redux: For state management
+- JavaScript (JSX): To render HTML
+- CSS: For styling 
+- Vite: For build
+- Reddit API: For fetching posts and comments from Reddit
 
 ## Project Files
 

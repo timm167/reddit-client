@@ -12,20 +12,20 @@ export default function SearchBar() {
         setLocalSearchTerm(event.target.value); // Update local state on every change
     }
 
-    const handleSubmit= (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault(); // Prevents site reload on form submission
         dispatch(setSearchTerm(localSearchTerm)); // dispatch the setSearchTerm to redux store
     }
 
     return (
-        <form onSubmit={handleSubmit}> 
+        <form onSubmit={handleSubmit} className={`search-bar ${searchTerm ? 'active' : 'inactive'}`}> 
             <input
                 type="text" 
-                placeholder="Search" 
+                placeholder={searchTerm || 'Search'} // Use the current search term as placeholder
                 value={localSearchTerm} // Use local state for value
                 onChange={handleChange}
+                className={searchTerm ? 'search-bar-active' : 'search-bar-inactive'} // Change input style based on search term
             />
-            <button type="submit">Search</button> {/* Button to trigger submit */}
         </form>
     )
 }

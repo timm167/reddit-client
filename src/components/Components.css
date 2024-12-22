@@ -1,3 +1,149 @@
 .posts-list {
     padding-inline-start: 10px;
 }
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+    width: 20%;
+    min-width: 170px;
+}
+
+.active {
+    border: #646cff 1px solid;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #646cff;
+}
+
+.post-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #d2d4ff;
+    background-color: #d2d4ff;
+    border: 1px solid #646cff;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 40px; 
+    border-radius: 5px;
+}
+
+.post-item:hover {
+    background-color: #bcbefa;
+}
+
+img {
+    align-self: center;
+    max-height: 700px;
+    max-width: 93%;
+}
+
+.img-holder {
+    display: flex;
+    align-self: center;
+    margin-top: 20px;
+    justify-content: center;
+    width: 70%;
+    max-height: 700px;
+    background-color: #4d4e5ed4;
+    border-radius: 20px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.subreddit {
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    text-align: left;
+    margin: 10px 0;
+    background-color: transparent;
+    padding: 15px;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.subreddit:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #3b45fa;
+}
+
+.search-bar-active::placeholder {
+    color: #3a373c;
+}
+
+.search-bar-active {
+    color: #3a373c;
+}
+
+.search-bar-active:focus::placeholder {
+    color: transparent
+}
+
+.more-comments{
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    text-align: center;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: transparent;
+    width: 90%;
+    align-self: center;
+}
+
+.more-comments:hover {
+    cursor: pointer;
+    background-color: #9ea2f4;
+}
+
+.comment-number{
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    text-align: center;
+    margin: 10px 0;
+    background-color: transparent;
+    padding: 15px;
+    border-radius: 20px;
+    width: 90%;
+    align-self: center;
+}
+
+.comment-number-holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-number:hover {
+    cursor: pointer;
+    background-color: #9ea2f4;
+}
+
+.half-line {
+    width: 70%; /* Half the width of the container */
+    height: 2px; /* Thickness of the line */
+    background-color: #9ea2f47a; /* Line color */
+    margin: 10px auto; /* Centers the line and adds vertical space */
+  }
+
+@media (max-width: 948px) {
+    img {
+        max-width: 100%;
+        border-radius: 20px;
+    }
+    
+}

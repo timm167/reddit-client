@@ -7,19 +7,6 @@ li {
   list-style: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -52,6 +39,7 @@ li {
   align-content: flex-start;
   justify-content: left;
   margin: 0px;
+  background-color: #f1f1f1;
 }
 
 .nav-bar {
@@ -59,20 +47,24 @@ li {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background-color: #646cff;
+  background-color: #6f77ff;
 }
 
 .site-title {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: 700;
   color: white;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin-left: 10px;
 }
 
 /* Apply Poppins to headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  margin: 0; /* Optional: Reset margin for consistency */
+  margin: 0; 
 }
 
 /* Apply Roboto to body text */
@@ -83,6 +75,33 @@ body, p, li, button {
 
 .main-page-container {
   display: flex;
-  margin: 0px 50px;
+  margin: 0px 4%;
   padding: 0px;
 }
+
+.logo {
+  height: 6em;
+  padding: 1.5em 0px;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 1.7em;
+  }
+}
+
+@media (max-width: 670px) {
+  .site-title {
+    font-size: 1.5em;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .site-title {
+    display: none;
+  }
+}
+

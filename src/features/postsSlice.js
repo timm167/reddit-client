@@ -15,11 +15,20 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm
       const response = await fetch(url);
       const data = await response.json();
 
+      const getImageData = (post) => {
+        if (post.data.url_overridden_by_dest) {
+          return post.data.url_overridden_by_dest;
+        }
+        else if (post.data.thumbnail) {
+          return post.data.thumbnail;
+        }
+      }
+
       return data.data.children.map((post) => ({ // .map to create a new array of objects containing the relevant data
         id: post.data.id,
         title: post.data.title,
         content: post.data.selftext,
-        image: post.data.thumbnail,
+        image: getImageData(post),
         num_comments: post.data.num_comments,
         subreddit: post.data.subreddit,
         comments: [], 

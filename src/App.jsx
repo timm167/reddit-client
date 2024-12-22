@@ -31,7 +31,6 @@ export default function App() {
        <img src="/Screenshot_2024-12-21_at_20.55.52-removebg-preview.png" alt="Site Logo" className='logo'/>
       </div>
       <div className="main-page-container">
-        {searchTerm && <h2>{searchTerm}</h2>}
         {loadingPosts && <p>Loading...</p>} {/* Display a loading message while posts are being fetched */}
         <Posts />
       </div>

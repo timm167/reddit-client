@@ -53,32 +53,33 @@ The Reddit API is used to fetch posts and comments, keeping the app updated with
 
 ## Project Files
 
-src/App.jsx
+```src/App.jsx```  
 The root component of the application, responsible for fetching posts based on the search term and rendering the search bar, site title, and list of posts.
 
-src/components/Post.jsx
+```src/components/Post.jsx```  
 Displays the details of a single post, including its title, content, and associated comments. It also handles fetching and rendering comments for the post.
 
-src/components/Posts.jsx
+```src/components/Posts.jsx```   
 Renders a list of posts by displaying multiple Post components.
 
-src/components/SearchBar.jsx
+```src/components/SearchBar.jsx```   
 Provides an input field for users to search for posts by subreddit.
 
-src/features/postsSlice.js
+```src/features/postsSlice.js```   
 Manages the state for posts and comments, including logic to fetch data from Reddit through async thunks.
 
-src/features/searchSlice.js
+```src/features/searchSlice.js```   
 Handles the state for the search term, used to filter posts based on user input.
 
-src/store.js
+```src/store.js```   
 Configures the Redux store and combines the posts and search reducers to manage the application's state.
 
-src/index.css
+```src/index.css```   
 Contains global styles applied across the entire application.
 
-src/components/Components.css
+```src/components/Components.css```   
 Component-specific styles scoped to individual React components.
+
 
 ## License
 

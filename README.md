@@ -1,9 +1,9 @@
 # Daily Dose of Reddit
 
-This project is a React application that fetches and displays posts and comments from Reddit using the Reddit API. It allows users to search for posts by subreddit and view comments for each post.
+This project is a React and Redux application that fetches and displays posts and comments from Reddit using the Reddit API. It allows users to search for posts by subreddit and view comments for each post. I plan to add updates.
 
 ## Project Structure
-
+```
 src/
 ┣ assets/
 ┣ components/
@@ -19,7 +19,7 @@ src/
 ┣ index.css
 ┣ main.jsx
 ┗ store.js
-
+```
 ## Features
 
 - Fetch and display popular posts from Reddit.
@@ -28,70 +28,58 @@ src/
 - Load more comments for a post.
 - Navigate to a subreddit by clicking on the subreddit name.
 
-## Installation
+## Tech Stack
 
-1. Clone the repository:
-    ```sh
-    git clone <repository-url>
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd <project-directory>
-    ```
-3. Install the dependencies:
-    ```sh
-    npm install
-    ```
+React:
+React is used to build the user interface, breaking the app into reusable components that keep things dynamic and responsive.
 
-## Usage
+Redux:
+Redux is used to manage the app’s state (like posts, comments, and the search term) in a central store, ensuring everything stays in sync.
 
-1. Start the development server:
-    ```sh
-    npm run dev
-    ```
-2. Open your browser and navigate to `http://localhost:3000`.
+React-Redux:
+React-Redux connects React with Redux, enabling components to easily access and update the state.
+
+JavaScript (JSX):
+JavaScript (JSX) is used to make the app interactive, allowing the combination of HTML and JavaScript to create dynamic components.
+
+CSS:
+Global styles are applied through index.css, while component-specific styles are scoped in Components.css.
+
+Vite:
+Vite is used as the build tool, providing fast compilation and smooth development experience.
+
+Reddit API:
+The Reddit API is used to fetch posts and comments, keeping the app updated with fresh content.
 
 ## Project Files
 
-### `src/App.jsx`
+```src/App.jsx```  
+The root component of the application, responsible for fetching posts based on the search term and rendering the search bar, site title, and list of posts.
 
-The main component of the application. It fetches posts based on the search term and displays the search bar, site title, and posts.
+```src/components/Post.jsx```  
+Displays the details of a single post, including its title, content, and associated comments. It also handles fetching and rendering comments for the post.
 
-### `src/components/post.jsx`
+```src/components/Posts.jsx```   
+Renders a list of posts by displaying multiple Post components.
 
-A component that displays a single post. It handles fetching and displaying comments for the post.
+```src/components/SearchBar.jsx```   
+Provides an input field for users to search for posts by subreddit.
 
-### `src/components/posts.jsx`
+```src/features/postsSlice.js```   
+Manages the state for posts and comments, including logic to fetch data from Reddit through async thunks.
 
-A component that displays a list of posts.
+```src/features/searchSlice.js```   
+Handles the state for the search term, used to filter posts based on user input.
 
-### `src/components/searchBar.jsx`
+```src/store.js```   
+Configures the Redux store and combines the posts and search reducers to manage the application's state.
 
-A component that allows users to search for posts by subreddit.
+```src/index.css```   
+Contains global styles applied across the entire application.
 
-### `src/features/postsSlice.js`
+```src/components/Components.css```   
+Component-specific styles scoped to individual React components.
 
-A Redux slice that manages the state for posts and comments. It includes async thunks for fetching posts and comments from the Reddit API.
-
-### `src/features/searchSlice.js`
-
-A Redux slice that manages the state for the search term.
-
-### `src/store.js`
-
-Configures the Redux store with the posts and search reducers.
-
-### `src/index.css`
-
-Global CSS styles for the application.
-
-### `src/components/Components.css`
-
-CSS styles for the components.
-
-## ESLint Configuration
-
-The project uses ESLint for code linting. The configuration is defined in `eslint.config.js`.
 
 ## License
 

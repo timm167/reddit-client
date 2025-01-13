@@ -35,7 +35,7 @@ export default function App() {
       <div className='nav-bar'>
        <h1 className='site-title' onClick={() => window.scrollTo(0,0)}>Daily Dose of Reddit</h1>
        <SearchBar />
-       <img src="/Screenshot_2024-12-21_at_20.55.52-removebg-preview.png" alt="Site Logo" className='logo'
+       <img src="Screenshot_2024-12-21_at_20.55.52-removebg-preview.png" alt="Site Logo" className='logo'
        onClick={handleClick}
        />
       </div>

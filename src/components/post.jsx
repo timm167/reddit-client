@@ -78,7 +78,6 @@ export default function Post({ post }) {
     const handleTitleClick = () => {
         handleClick();
         selectPost();
-        
     }
     
     return (
@@ -94,7 +93,7 @@ export default function Post({ post }) {
             }
             {post.image && isValidImage(post.image) && 
             <div className='img-holder'>
-                <img src={post.image} alt={post.title} />
+                <img src={post.image} alt={post.title} className='post-image'/>
             </div>}
             <div className='content-holder'>
             {post.content.length < 300 || showFullContent ? (

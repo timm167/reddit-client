@@ -1,6 +1,8 @@
 # Daily Dose of Reddit
 
-This project is a React and Redux application that fetches and displays posts and comments from Reddit using the Reddit API. It allows users to search for posts by subreddit and view comments for each post. I plan to add updates.
+This project is a React and Redux application that fetches and displays posts and comments from Reddit using the Reddit API. It allows users to search for posts, view posts, and read comments. It provides basic functionality for viewing reddit without posting. The core purpose of building this app was to practice redux.
+
+Find it at: https://timm167.github.io/reddit-client/
 
 ## Project Structure
 ```
@@ -10,6 +12,7 @@ src/
 ┃ ┣ Components.css
 ┃ ┣ post.jsx
 ┃ ┣ posts.jsx
+┃ ┣ sidebar.jsx
 ┃ ┗ searchBar.jsx
 ┣ features/
 ┃ ┣ postsSlice.js

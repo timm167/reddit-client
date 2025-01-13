@@ -24,15 +24,26 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (searchTerm
         }
       }
 
+      const getVideo = (post) => {
+        if (post.data.is_video) {
+          return post.data.media.reddit_video.fallback_url;
+        }
+      }
+
       return data.data.children.map((post) => ({ // .map to create a new array of objects containing the relevant data
         id: post.data.id,
         title: post.data.title,
+        author: post.data.author,
         content: post.data.selftext,
         image: getImageData(post),
+        has_video: post.data.is_video,
+        video: getVideo(post),
         num_comments: post.data.num_comments,
+        votes: post.data.ups,
         subreddit: post.data.subreddit,
         comments: [], 
-        is_private: post.data.is_private
+        is_private: post.data.is_private,
+        link: post.data.permalink,
       }));
     }
     catch (error) {
@@ -89,6 +100,7 @@ const postsSlice = createSlice({
 
         // completed state after fetching posts
         builder.addCase(fetchPosts.fulfilled, (state, action) => {
+            console.log(action.payload);
             state.loadingPosts = false;
             state.posts = action.payload;
         });
@@ -128,45 +140,4 @@ const postsSlice = createSlice({
 
 // Export the reducer to be used in the Redux store
 export default postsSlice.reducer;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

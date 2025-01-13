@@ -35,19 +35,22 @@ li {
 .app-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items: center;
+  align-content: center;
   justify-content: left;
   margin: 0px;
-  background-color: #f1f1f1;
+  background-color: #b6addb;
+  width: 100%;
 }
 
 .nav-bar {
   display: flex;
+  position: fixed;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  background-color: #6f77ff;
+  background-color: #7a7fcf;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .site-title {
@@ -57,9 +60,34 @@ li {
   justify-content: center;
   align-content: center;
   text-align: center;
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
 }
 
+.site-title:hover {
+  cursor: pointer;
+  display: inline-block;
+  text-shadow: 0px 0px 4px rgb(255, 162, 0);
+}
+
+.loading-box {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  align-content: top;
+  height: 100vh;
+}
+
+.loading {
+  font-size: 2.5em;
+  margin-top: 60px;
+  font-weight: 700;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
 /* Apply Poppins to headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
@@ -75,8 +103,10 @@ body, p, li, button {
 
 .main-page-container {
   display: flex;
-  margin: 0px 4%;
+  margin: 0px 2%;
   padding: 0px;
+  flex-direction: column;
+  margin-left: 0px;
 }
 
 .logo {
@@ -86,9 +116,53 @@ body, p, li, button {
   transition: filter 300ms;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
+.page-splitter{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+  margin-top: 140px;
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  background-color: #c1b3ff15;
+  border-radius: 5px;
+  height: 100vh;
+  margin-bottom: 20px;
+}
+
+.side-bar-holder {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fffef700;
+  width: 300px;
+  height: 100vh;
+  min-width: 230px;
+  margin: 0px;  
+}
+
 @media (max-width: 768px) {
   .site-title {
     font-size: 1.7em;
+  }
+  .page-splitter {
+    flex-direction: column;
+  }
+  .side-bar-holder {
+    display: none;
+  }
+  .main-page-container {
+    margin: 5px 2%;
   }
 }
 

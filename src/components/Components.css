@@ -1,5 +1,5 @@
 .posts-list {
-    padding-inline-start: 10px;
+    padding-inline-start: 0px;
 }
 
 .search-bar {
@@ -8,7 +8,8 @@
     align-items: center;
     margin: 1%;
     width: 20%;
-    min-width: 170px;
+    min-width: 300px;
+    margin-left: 0px;
 }
 
 .active {
@@ -22,26 +23,81 @@
     border: 1px solid #646cff;
 }
 
+.content-holder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 10px;
+    padding: 0px;
+}
+
+.post-comments {
+    background-color: #dee0ff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-left: 5px;
+}
+
 .post-item {
     display: flex;
     flex-direction: column;
     border: 1px solid #d2d4ff;
     background-color: #d2d4ff;
-    border: 1px solid #646cff;
+    border: 1px solid #2d305a;
     margin-top: 10px;
     margin-bottom: 20px;
     padding: 40px; 
     border-radius: 5px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
 .post-item:hover {
     background-color: #bcbefa;
 }
 
+
+.side-bar-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 30px;
+    width: 100%;
+
+}
+
+.side-bar-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    
+}
+
 img {
     align-self: center;
     max-height: 700px;
     max-width: 93%;
+}
+
+.side-title {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin: 10px 0;
+    text-align: center;
+    color: #444444d8;
+
 }
 
 .img-holder {
@@ -55,13 +111,75 @@ img {
     border-radius: 20px;
 }
 
+.video-holder {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 10px;
+    background-color: #9ea2f442;
+    width: 80%;
+    margin: 10px;
+}
+
+.video-player {
+    width: 60%;
+    height: 60%;
+    border-radius: 20px;
+    justify-self: center;
+}
+
+
 .post-title {
     font-size: 1.5em;
     font-weight: 600;
     margin: 10px 0;
+    text-align: left;
+    margin-left: 10px;
 }
 
-.subreddit {
+.post-title:hover {
+    color: #64378e;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.post-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: #9ea2f44f;
+    text-decoration: none;
+}
+
+.post-links:hover {
+    background-color: #9ea2f4;
+}
+
+.link-out{
+    color: black;
+    font-size: 1.1em;
+    padding: 10px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+.link-out:hover {
+    background-color: rgb(255, 99, 71);
+    color: white;
+}
+
+.post-author {
+    font-size: 1em;
+    font-weight: 500;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.upvotes {
     font-size: 1em;
     font-weight: 500;
     border: none;
@@ -73,9 +191,24 @@ img {
     margin-left: 20px;
 }
 
+.upvotes:hover {
+    cursor: pointer;
+    color: #3b45fa;
+}
+
+.subreddit {
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    text-align: left;
+    margin: 10px 0;
+    background-color: transparent;
+    padding: 15px;
+    border-radius: 20px;
+}
+
 .subreddit:hover {
     cursor: pointer;
-    text-decoration: underline;
     color: #3b45fa;
 }
 
@@ -140,10 +273,47 @@ img {
     margin: 10px auto; /* Centers the line and adds vertical space */
   }
 
+  .side-bar-item{
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    font-weight: 500;
+    text-align: center;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: #eceaff;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+  }
+
+  .side-bar-item:hover {
+    cursor: pointer;
+    background-color: #9ea2f4;
+  }
+
+  .list-button{
+    border: none;
+    background-color: transparent;
+  }
+
+.bar-icon {
+    height: 40px;
+    border-radius: 10px;
+}
+
 @media (max-width: 948px) {
     img {
         max-width: 100%;
         border-radius: 20px;
     }
     
+}
+@media (max-width: 768px) {
+    .side-bar-list {
+        display: none;
+    }
+
 }

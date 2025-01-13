@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../features/postsSlice';
 import { setSearchTerm } from '../features/searchSlice';
@@ -15,6 +15,33 @@ export default function Post({ post }) {
     const postComments = useSelector((state) => 
         state.posts.posts.find((p) => p.id === post.id)?.comments
     );
+
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        videoRef.current.play();
+                    } else {
+                        videoRef.current.pause();
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        if (videoRef.current) {
+            observer.observe(videoRef.current);
+        }
+
+        return () => {
+            if (videoRef.current) {
+                observer.unobserve(videoRef.current);
+            }
+        };
+    }, []);
 
     function handleClick() {
         if (!showComments && (!postComments || postComments.length === 0)) { 
@@ -44,17 +71,32 @@ export default function Post({ post }) {
     }
 
     function clickSubreddit() {
+        window.scrollTo(0, 0);
         dispatch(setSearchTerm(post.subreddit));
     }
 
+    const handleTitleClick = () => {
+        handleClick();
+        selectPost();
+        
+    }
     
     return (
         <li className='post-item' onClick={selectPost}>
-            <h2 className='post-title'>{post.title}</h2>
+            <h2 className='post-title' onClick={handleTitleClick}>{post.title}</h2>
+            <h4 className='post-author'>{post.author}</h4>
+            {post.has_video && 
+            <div className="video-holder">
+                <video ref={videoRef}className="video-player" controls>
+                    <source src={post.video}/>
+                </video>
+            </div>
+            }
             {post.image && isValidImage(post.image) && 
             <div className='img-holder'>
                 <img src={post.image} alt={post.title} />
             </div>}
+            <div className='content-holder'>
             {post.content.length < 300 || showFullContent ? (
                 <p>{post.content}</p>
             ) : (
@@ -63,10 +105,11 @@ export default function Post({ post }) {
                     <button onClick={handleClick} className='more-comments'>Read More...</button>
                 </>
             )}
+            </div>
             {loadingComments && <p>Loading Comments...</p>}
             {showComments && postComments && (
                 <>
-                    <ul>
+                    <ul className='post-comments'>
                         {postComments.slice(0, visibleComments).map((comment) => (
                             <li key={comment.id}>
                                 <h3>{comment.author}</h3>
@@ -78,13 +121,18 @@ export default function Post({ post }) {
                         <button onClick={handleMoreComments} className='more-comments'>More Comments</button>
                     )}
                 </>
-                
             )}
             <div class="half-line"></div>
             <button onClick={handleClick} className='comment-number'>
                 {showComments ? 'Hide Comments' : `Comments: ${post.num_comments}`}
             </button>
-            <p onClick={clickSubreddit} className='subreddit'>Subreddit: {post.subreddit}</p>
+            <div className='post-links'>
+                <p className="upvotes">Upvotes: {post.votes}</p>
+                <p onClick={clickSubreddit} className='subreddit'>Subreddit: {post.subreddit}</p>
+            </div>
+            <a href={`https://www.reddit.com${post.link}`} className='post-links link-out' target='_blank' rel='noreferrer'>
+                View on Reddit
+            </a>
         </li>
     );
 }

@@ -8,8 +8,6 @@ It allows users to search for posts, view posts, and read comments.
 
 It provides basic functionality for viewing reddit without posting. The core purpose of building this app was to practice redux.
 
-Find it at: https://timm167.github.io/reddit-client/
-
 I like it because I prefer the color scheme over reddit's plus it's not designed to keep your attention in the same way.
 
 Since I enjoy browsing reddit, it's cool to have a client that isn't built to keep you hooked. The sidebar mostly just shows stuff I enjoy reading.

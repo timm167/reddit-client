@@ -16,6 +16,11 @@
     border: #646cff 1px solid;
 }
 
+.video-player {
+    width: 100%;
+    max-height: 500px;
+}
+
 .search-bar input {
     width: 100%;
     padding: 10px;

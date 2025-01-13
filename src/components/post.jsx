@@ -87,7 +87,7 @@ export default function Post({ post }) {
             <h4 className='post-author'>{post.author}</h4>
             {post.has_video && 
             <div className="video-holder">
-                <video ref={videoRef}className="video-player" controls>
+                <video ref={videoRef} className="video-player" controls>
                     <source src={post.video}/>
                 </video>
             </div>

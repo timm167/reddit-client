@@ -2,15 +2,15 @@
 
 **Find it at: https://timm167.github.io/reddit-client/**
 
-This project is a React and Redux application that fetches and displays posts and comments from Reddit using the Reddit API. 
+- This project is a React and Redux application that fetches and displays posts and comments from Reddit using the Reddit API. 
 
-It allows users to search for posts, view posts, and read comments. 
+- It allows users to search for posts, view posts, and read comments. 
 
-It provides basic functionality for viewing reddit without posting. The core purpose of building this app was to practice redux.
+- It provides basic functionality for viewing reddit without posting. **The core purpose of building this app was to practice redux.**
 
-I like it because I prefer the color scheme over reddit's plus it's not designed to keep your attention in the same way.
+- I like it because I prefer the color scheme over reddit's plus it's not designed to keep your attention in the same way.
 
-Since I enjoy browsing reddit, it's cool to have a client that isn't built to keep you hooked. The sidebar mostly just shows stuff I enjoy reading.
+- Since I enjoy browsing reddit, it's cool to have a client that isn't built to keep you hooked. The sidebar mostly just shows stuff I enjoy reading.
 
 ## Project Structure
 ```

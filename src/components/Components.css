@@ -22,7 +22,7 @@
 }
 
 .post-image {
-    width: 100%;
+    width: auto;
     max-height: 400px;
 }
 
@@ -117,7 +117,7 @@ img {
     justify-content: center;
     width: 70%;
     max-height: 700px;
-    background-color: #4d4e5ed4;
+    background-color: #9ea2f442;
     border-radius: 20px;
 }
 
